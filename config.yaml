@@ -1,0 +1,20 @@
+database: !include database.yaml
+datasource: !include datasource.yaml
+
+osm2pgsql:
+  style: !path default.style
+  log: !path osm2pgsql.log
+  opts: --cache 2048
+
+export:
+  path: !path export
+  qgis_projects:
+    - !path qgis-mapnik.qgs
+    - !path qgis-mapnik-lc.qgs
+    - !path qgis-simple.qgs
+  include_dirs:
+    - !path svg
+  readme: !path readme.md
+
+layers: !include layers.yaml
+fieldmap: !include fieldmap.yaml

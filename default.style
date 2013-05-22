@@ -1,0 +1,49 @@
+# DELETE
+node,way  source               text      delete
+node,way  note                 text      delete
+node,way  description          text      delete
+node,way  created_by           text      delete
+node,way  cladr:code           text      delete
+node,way  cladr:name           text      delete
+node,way  cladr:suffix         text      delete
+
+node,way  type                 text      linear # NOT WORKING
+
+# ADDRESS
+node,way   addr:housenumber    text      linear
+
+# POI
+node,way   man_made            text      polygon
+node,way   leisure             text      polygon
+node,way   amenity             text      polygon
+node,way   office              text      polygon
+node,way   shop                text      polygon
+node,way   tourism             text      polygon
+node,way   sport               text      polygon
+
+# BOUNDARY
+node,way   boundary            text      linear
+node,way   admin_level         text      linear
+
+# SETTLEMENT
+node,way   place               text      polygon
+
+# BUILDING
+node,way   building            text      polygon
+
+# HIGHWAYS
+node,way   highway             text      linear
+
+# RAILWAY
+node,way   railway             text      linear
+node,way   power               text      polygon
+
+# NAME
+node,way   name                text      linear
+
+# NATURAL
+node,way   natural             text      polygon
+node,way   waterway            text      polygon
+
+# LANDUSE
+node,way   landuse             text      polygon

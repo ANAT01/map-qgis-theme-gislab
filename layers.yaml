@@ -1,0 +1,247 @@
+settlement-point:
+  type: point
+  n: "Населенные пункты"
+  f: <place> IN ('city', 'town', 'village', 'hamlet', 'locality')
+  fields: 
+    - <name>
+    - <name:en>
+    - <name:ru>
+    - <place>
+    - <addr:country>
+    - <addr:region>
+    - <addr:district>
+    - <addr:postcode>
+    - <population>
+  classification:
+    place:
+      classes:
+        - {k: city, f: <place> = 'city'}
+        - {k: town, f: <place> = 'town'}
+        - {k: village, f: <place> = 'village'}
+        - {k: hamlet, f: <place> = 'hamlet'}
+
+settlement-polygon:
+  type: polygon
+  n: "Населенные пункты"
+  f: "<place> IN ('city', 'town', 'village', 'hamlet', 'locality')"
+  fields: 
+    - <name>
+    - <name:en>
+    - <name:ru>
+    - <place>
+    - <addr:country>
+    - <addr:region>
+    - <addr:district>
+    - <addr:postcode>
+    - <population>
+  classification:
+    place:
+      classes:
+        - {k: city, f: <place> = 'city'}
+        - {k: town, f: <place> = 'town'}
+        - {k: village, f: <place> = 'village'}
+        - {k: hamlet,  f: <place> = 'hamlet'}
+
+highway-line:
+  type: line
+  n: "Дорожная сеть"
+  f: >-
+    <highway> IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary',
+    'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link',
+    'residential', 'unclassified', 'road', 'living_street', 'service', 'track', 
+    'pedestrian', 'footway', 'path', 'steps', 'bridleway', 'construction',
+    'cycleway', 'proposed', 'raceway')
+  fields: 
+    - <name>
+    - <ref>
+    - <highway>
+    - <oneway>
+    - <bridge>
+    - <tunnel>
+    - <maxspeed>
+    - <lanes>
+  classification:
+    rank:
+      classes:
+        - {k: 1, f: "<highway> IN ('motorway', 'trunk')"}
+        - {k: 2, f: "<highway> IN ('primary')"}
+        - {k: 3, f: "<highway> IN ('secondary')"}
+        - {k: 4, f: "<highway> IN ('tertiary')"}
+        - {k: 5, f: "<highway> IN ('residential', 'unclassified')"}
+        - {k: 6, f: "<highway> IN ('service')"}
+
+water-line:
+  type: line
+  n: "Гидросеть"
+  f: <waterway> IN ('river', 'stream', 'canal', 'drain')
+  fields: 
+    - <name>
+    - <waterway>
+  classification: 
+    waterway:
+      classes:
+        - {k: river, n: river, f: <waterway> = 'river'}
+        - {k: stream, n: stream, f: <waterway> = 'stream'}
+        - {k: canal, n: canal, f: <waterway> = 'canal'}
+
+water-polygon:
+  type: polygon
+  n: "Водоёмы"
+  f: >-
+    <natural> IN ('water', 'wetland') OR <waterway> = 'riverbank'
+  fields: 
+    - <name>
+    - <natural>
+    - <waterway>
+    - <wetland>
+
+railway-line:
+  type: line
+  n: "Железнодорожные, трамвайные пути и метро"
+  f: >-
+      <railway> IN ('rail', 'tram', 'light_rail', 'abandoned', 'disused',
+      'subway', 'preserved', 'construction', 'narrow_gauge', 'service',
+      'siding', 'spur', 'monorail', 'monoroail', 'proposed')
+  fields:
+    - <name>
+    - <railway>
+    - <gauge>
+    - <service>
+    - <bridge>
+
+railway-station-point:
+  type: point
+  n: "Железнодорожные станции"
+  f: <railway> IN ('station', 'halt', 'tram_stop')
+  fields: 
+    - <name>
+    - <railway>
+
+vegetation-polygon:
+  type: polygon
+  n: "Растительность"
+  f: >-
+    <natural> IN ('wood', 'scrub', 'heath') OR <landuse> IN ('forest')
+  fields:
+    - <natural>
+    - <landuse>
+    - <name> 
+  classification:
+    wood_tagging:
+      classes:
+        - {k: both, n: "natural=wood + landuse=forest", f: <natural> = 'wood' AND <landuse> = 'forest'}
+        - {k: natural, n: "natural=wood", f: <natural> = 'wood'}
+        - {k: landuse, n: "landuse=forest", f: <landuse> = 'forest'}
+
+boundary-polygon:
+  type: polygon
+  n: "Административные границы"
+  f: <boundary> = 'administrative'
+  fields:
+    - <name>
+    - <admin_level>
+  classification:
+    admin_level:
+      classes:
+        - {k: 2, f: <admin_level> = '2'}
+        - {k: 3, f: <admin_level> = '3'}
+        - {k: 4, f: <admin_level> = '4'}
+        - {k: 5, f: <admin_level> = '5'}
+        - {k: 6, f: <admin_level> = '6'}
+        - {k: 7, f: <admin_level> = '7'}
+        - {k: 8, f: <admin_level> = '8'}
+        - {k: 9, f: <admin_level> = '9'}
+
+landuse-polygon:
+  type: polygon
+  n: "Землепользование"
+  f: <landuse> IS NOT NULL AND NOT <landuse> IN ('forest')
+  fields:
+    - <landuse>
+    - <residential>
+
+building-point:
+  type: point
+  n: "Здания"
+  f: <building> IS NOT NULL AND NOT <building> IN ('no', 'entrance')
+  fields: 
+    - <building>
+    - <addr:street>
+    - <addr:suburb>
+    - <addr:housenumber>
+    - <name>
+
+building-polygon:
+  type: polygon
+  n: "Здания"
+  f: <building> IS NOT NULL AND NOT <building> IN ('no', 'entrance')
+  fields: 
+    - <building>
+    - <addr:street>
+    - <addr:suburb>
+    - <addr:housenumber>
+    - <name>
+
+poi-point:
+  type: point
+  n: "Точки интереса"
+  f: >-
+    <man_made> IS NOT NULL OR <leisure> IS NOT NULL
+    OR <amenity> IS NOT NULL OR <office> IS NOT NULL
+    OR <shop> IS NOT NULL OR <tourism> IS NOT NULL
+    OR <sport> IS NOT NULL
+  fields: 
+    - <name>
+    - <man_made>
+    - <leisure>
+    - <amenity>
+    - <office>
+    - <shop>
+    - <tourism>
+    - <sport>
+
+poi-polygon:
+  type: polygon
+  n: "Точки интереса"
+  f: >-
+    <man_made> IS NOT NULL OR <leisure> IS NOT NULL
+    OR <amenity> IS NOT NULL OR <office> IS NOT NULL
+    OR <shop> IS NOT NULL OR <tourism> IS NOT NULL
+    OR <sport> IS NOT NULL
+  fields:
+    - <name>
+    - <man_made>
+    - <leisure>
+    - <amenity>
+    - <office>
+    - <shop>
+    - <tourism>
+    - <sport>
+
+nature_reserve-polygon:
+  type: polygon
+  n: "Охраняемые природные территории"
+  f: >-
+    <leisure> = 'nature_reserve' 
+    OR <boundary> = 'national_park'
+    OR <boundary> = 'protected_area'
+  fields:
+    - <name>
+    - <leisure>
+    - <boundary>
+
+surface-polygon:
+  type: polygon
+  n: "Поверхность"
+  f: >-
+    <natural> IN ('beach', 'sand', 'fell', 'grassland', 'heath', 'scree',
+    'scrub')
+  fields:
+    - <natural>
+
+railway-platform-polygon:
+  type: polygon
+  n: "Железнодорожные платформы"
+  f: <railway> = 'platform'
+  fields:
+    - <name>
