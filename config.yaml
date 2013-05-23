@@ -1,5 +1,6 @@
 database: !include database.yaml
 datasource: !include datasource.yaml
+web: !include web.yaml
 
 osm2pgsql:
   style: !path default.style
