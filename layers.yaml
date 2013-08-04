@@ -125,6 +125,7 @@ vegetation-polygon:
   fields:
     - <natural>
     - <landuse>
+    - <wood>
     - <name> 
   classification:
     wood_tagging:
