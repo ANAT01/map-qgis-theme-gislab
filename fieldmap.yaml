@@ -7,3 +7,4 @@
 "addr:housenumber": "a_hsnmbr"
 "addr:postcode": "a_pstcd"
 "residential": "rsdntl"
+"building:levels": "b_levels"

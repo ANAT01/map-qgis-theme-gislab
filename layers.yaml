@@ -173,6 +173,7 @@ building-point:
     - <addr:street>
     - <addr:suburb>
     - <addr:housenumber>
+    - <building:levels>
     - <name>
 
 building-polygon:
@@ -184,6 +185,7 @@ building-polygon:
     - <addr:street>
     - <addr:suburb>
     - <addr:housenumber>
+    - <building:levels>
     - <name>
 
 poi-point:
