@@ -60,6 +60,8 @@ highway-line:
     - <tunnel>
     - <maxspeed>
     - <lanes>
+    - <width>
+    - <surface>
   classification:
     rank:
       classes:
