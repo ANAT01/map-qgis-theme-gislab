@@ -110,6 +110,7 @@ railway-line:
     - <gauge>
     - <service>
     - <bridge>
+    - <tunnel>
 
 railway-station-point:
   type: point
